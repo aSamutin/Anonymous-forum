@@ -1,0 +1,27 @@
+{
+  "name": "Item",
+  "plural": "Items",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "default": 0
+    },
+    "sectionId": {
+      "type": "number",
+      "default": 0
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

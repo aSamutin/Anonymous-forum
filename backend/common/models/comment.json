@@ -1,0 +1,35 @@
+{
+  "name": "Comment",
+  "plural": "Comments",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "default": 0
+    },
+    "itemId": {
+      "type": "number",
+      "default": 0
+    },
+    "username": {
+      "type": "string",
+      "default": ""
+    },
+    "date": {
+      "type": "date",
+      "default": ""
+    },
+    "text": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
