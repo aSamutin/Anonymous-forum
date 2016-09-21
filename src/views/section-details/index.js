@@ -55,11 +55,11 @@ module.exports = Backbone.View.extend({
         $("form[name='new-item']").toggleClass("hide");
     },
     addItem: function() {
-        var item = new Item({id: Math.round(Math.random()*1000),sectionId: this.sectionId,title: $("input[name='titleItem']").val()});
+        var item = new Item({sectionId: this.sectionId,title: $("input[name='titleItem']").val()});
         $(".blackBackground").toggleClass("hide");
         $("form[name='new-item']").toggleClass("hide");
         this.collection.add(item);
-        Backbone.sync("create", item);
+        item.save();
     },
     back: function() {
         Backbone.history.navigate("section", true);

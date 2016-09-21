@@ -47,9 +47,11 @@ module.exports = Backbone.View.extend({
         $("form[name='new-section']").toggleClass("hide");
     },
     addSection: function() {
-        var section = new Section({id: Math.round(Math.random()*1000),title: $("input[name='titleItem']").val(),
-        description: $("textarea").val()});
-        Backbone.sync("create",section);
+        var section = new Section({
+            title: $("input[name='titleItem']").val(),
+            description: $("textarea").val()
+        });
+        section.save();
         $(".blackBackground").toggleClass("hide");
         $("form[name='new-section']").toggleClass("hide");
         this.collection.add(section);

@@ -21,8 +21,9 @@ module.exports = {
 		 loader: "eslint-loader",
 		 exclude: /node_modules/
 	    },
-	    { test: /\.ejs$/, loader: 'ejs-loader'}
-        ]
+	    { test: /\.ejs$/, loader: 'ejs-loader'},
+      {  test: /\.css$/, loader: "style-loader!css!"}
+      ]
     },
     devtool: 'source-map'
 };

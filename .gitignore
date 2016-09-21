@@ -1,1 +1,3 @@
 node_modules
+backend/client/bundle.js
+backend/client/bundle.map.js

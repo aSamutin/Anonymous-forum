@@ -1,5 +1,3 @@
-"use strict";
-
 var Backbone = require("backbone/backbone");
 var Section = require("../models/section.model");
 

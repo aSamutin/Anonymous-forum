@@ -3,6 +3,8 @@ var SectionRouter = require("./routers/sections");
 var IndexRouter = require("./routers/index");
 var config = require("./app.config");
 var $ = require("jquery/dist/jquery");
+require("../backend/client/style.css");
+require("quill/dist/quill.snow.css");
 
 var index = new IndexRouter();
 var sections = new SectionRouter();

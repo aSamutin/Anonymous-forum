@@ -217,6 +217,9 @@ form[name="new-section"] input[type="text"], form[name="new-item"] input[type="t
 form[name="new-section"] h2 {
   text-align: center;
 }
+form[name="new-comment"] input[name="username"]{
+  width: 99%;
+}
 
 form[name="new-comment"] input[type="submit"], form[name="new-item"] input[type="submit"],
 form[name="new-section"] input[type="submit"] {
@@ -225,4 +228,11 @@ form[name="new-section"] input[type="submit"] {
 }
 .hide {
   display: none;
+}
+#editor {
+  margin-bottom: 10px;
+}
+#editor, .ql-toolbar {
+    background-color: white;
+    color: black;
 }

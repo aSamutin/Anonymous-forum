@@ -6,6 +6,7 @@ var templPopup = require("./new-comment.ejs");
 var CommentView = require("./comment");
 var Items  = require("../../collections/item.collection");
 var Comment  = require("../../models/comment.model");
+var Quill = require("quill/dist/quill.min");
 
 module.exports = Backbone.View.extend({
     tagName: "div",
@@ -45,18 +46,22 @@ module.exports = Backbone.View.extend({
     openForm: function() {
         $(".blackBackground").toggleClass("hide");
         $("form[name='new-comment']").toggleClass("hide");
+        var quill = new Quill("#editor", {
+            placeholder: "Введите текст сообщения...",
+            theme: "snow"
+        });
     },
 
     addComment: function() {
         var comment = new Comment({
-            id: Math.round(Math.random()*1000),itemId: this.itemId,
+            itemId: this.itemId,
             username: $("input[name='username']").val(),
-            text: $("textarea").val()
+            text: $(".ql-editor p").html()
         });
         $(".blackBackground").toggleClass("hide");
         $("form[name='new-comment']").toggleClass("hide");
         this.collection.add(comment);
-        Backbone.sync("create", comment);
+        comment.save();
     },
     back: function() {
         window.history.back();
