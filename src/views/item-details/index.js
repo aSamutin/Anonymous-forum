@@ -16,7 +16,8 @@ module.exports = Backbone.View.extend({
     events: {
         "click #addNewComment": "openForm",
         "click #addComment": "addComment",
-        "click #back": "back"
+        "click #back": "back",
+        "click .close": "closePopup"
     },
 
     initialize: function (item) {
@@ -65,6 +66,10 @@ module.exports = Backbone.View.extend({
     },
     back: function() {
         window.history.back();
+    },
+    closePopup: function() {
+        $(".blackBackground").toggleClass("hide");
+        $("form[name='new-comment']").toggleClass("hide");
     },
     destroy: function () {
         _.invoke(this.views, "remove");

@@ -236,3 +236,8 @@ form[name="new-section"] input[type="submit"] {
     background-color: white;
     color: black;
 }
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}

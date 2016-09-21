@@ -13771,7 +13771,8 @@
 	    events: {
 	        "click .section": "navigate",
 	        "click #addNewSection": "openForm",
-	        "click #addSection": "addSection"
+	        "click #addSection": "addSection",
+	        "click .close": "closePopup"
 	    },
 	    tagName: "div",
 	    className: "sections-list",
@@ -13815,6 +13816,10 @@
 	        $(".blackBackground").toggleClass("hide");
 	        $("form[name='new-section']").toggleClass("hide");
 	        this.collection.add(section);
+	    },
+	    closePopup: function closePopup() {
+	        $(".blackBackground").toggleClass("hide");
+	        $("form[name='new-section']").toggleClass("hide");
 	    },
 	
 	    destroy: function destroy() {
@@ -13922,7 +13927,7 @@
 	obj || (obj = {});
 	var __t, __p = '';
 	with (obj) {
-	__p += '<div id="popup">\n  <div class="blackBackground hide"></div>\n  <form action="javascript:void(0);" class="hide" name="new-section">\n      <h2>Добавление раздела</h2>\n      <label>Название\n          <input type="text" name="titleItem"><br>\n      </label>\n      <label>Описание\n          <textarea name="comment" rows="5" placeholder="Текст сообщения"></textarea>\n      </label><br>\n      <input type="submit" value="Создать" id="addSection">\n  </form>\n</div>\n';
+	__p += '<div id="popup">\n  <div class="blackBackground hide"></div>\n  <form action="javascript:void(0);" class="hide" name="new-section">\n      <div class="close">&#10006;</div>\n      <h2>Добавление раздела</h2>\n      <label>Название\n          <input type="text" name="titleItem"><br>\n      </label>\n      <label>Описание\n          <textarea name="comment" rows="5" placeholder="Текст сообщения"></textarea>\n      </label><br>\n      <input type="submit" value="Создать" id="addSection">\n  </form>\n</div>\n';
 	
 	}
 	return __p
@@ -14009,7 +14014,8 @@
 	        "click .item": "navigate",
 	        "click #addNewItem": "openForm",
 	        "click #addItem": "addItem",
-	        "click #back": "back"
+	        "click #back": "back",
+	        "click .close": "closePopup"
 	    },
 	    tagName: "div",
 	    className: "items-list",
@@ -14061,7 +14067,10 @@
 	    back: function back() {
 	        Backbone.history.navigate("section", true);
 	    },
-	
+	    closePopup: function closePopup() {
+	        $(".blackBackground").toggleClass("hide");
+	        $("form[name='new-item']").toggleClass("hide");
+	    },
 	    destroy: function destroy() {
 	        _.invoke(this.views, "remove");
 	        this.remove();
@@ -14092,7 +14101,7 @@
 	obj || (obj = {});
 	var __t, __p = '';
 	with (obj) {
-	__p += '<div id="popup">\n  <div class="blackBackground hide"></div>\n  <form action="javascript:void(0);" class="hide" name="new-item">\n      <h2>Добавление темы</h2>\n      <input type="text" name="titleItem"><br>\n      <input type="submit" value="Создать" id="addItem">\n  </form>\n</div>\n';
+	__p += '<div id="popup">\n  <div class="blackBackground hide"></div>\n  <form action="javascript:void(0);" class="hide" name="new-item">\n      <div class="close">&#10006;</div>\n      <h2>Добавление темы</h2>\n      <input type="text" name="titleItem"><br>\n      <input type="submit" value="Создать" id="addItem">\n  </form>\n</div>\n';
 	
 	}
 	return __p
@@ -14245,7 +14254,8 @@
 	    events: {
 	        "click #addNewComment": "openForm",
 	        "click #addComment": "addComment",
-	        "click #back": "back"
+	        "click #back": "back",
+	        "click .close": "closePopup"
 	    },
 	
 	    initialize: function initialize(item) {
@@ -14295,6 +14305,10 @@
 	    back: function back() {
 	        window.history.back();
 	    },
+	    closePopup: function closePopup() {
+	        $(".blackBackground").toggleClass("hide");
+	        $("form[name='new-comment']").toggleClass("hide");
+	    },
 	    destroy: function destroy() {
 	        _.invoke(this.views, "remove");
 	        this.remove();
@@ -14325,7 +14339,7 @@
 	obj || (obj = {});
 	var __t, __p = '';
 	with (obj) {
-	__p += '<div id="popup">\n    <div class="blackBackground hide"></div>\n    <form action="javascript:void(0);" name="new-comment" class="hide">\n        <h2>Добавление комментария</h2>\n        <label>Имя\n            <input type="text" name="username">\n        </label><br>\n        <label>Комментарий</label>\n        <div id="editor"></div>\n        <input type="submit" value="Создать" id="addComment">\n    </form>\n</div>\n';
+	__p += '<div id="popup">\n    <div class="blackBackground hide"></div>\n    <form action="javascript:void(0);" name="new-comment" class="hide">\n        <div class="close">&#10006;</div>\n        <h2>Добавление комментария</h2>\n        <label>Имя\n            <input type="text" name="username">\n        </label><br>\n        <label>Комментарий</label>\n        <div id="editor"></div>\n        <input type="submit" value="Создать" id="addComment">\n    </form>\n</div>\n';
 	
 	}
 	return __p
@@ -16475,7 +16489,7 @@
 	
 	
 	// module
-	exports.push([module.id, "#app {\n  margin: 10px;\n  box-shadow: 0 0 10px #ccc;\n  padding-bottom: 20px;\n  min-height: 720px;\n  min-width: 1170px;\n  font-family: 'PT Sans', sans-serif;\n  background-color: rgba(171, 171, 171, 0.37);\n\n}\n\n.header {\n  box-shadow: 0 0 10px #ccc;\n  background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);\n  color: white;\n\n}\n.header h1{\n  display: block;\n  float: left;\n  padding-left: 30px;\n}\n.header .auth{\n  float: right;\n  padding: 10px;\n  margin: 20px;\n}\n.header .exit{\n  float: right;\n  margin: 30px;\n}\n.clearfix:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n#content h2 {\n  text-align: center;\n}\n\n#content .control {\n  position: absolute;\n}\n\n#content .control input[type=\"submit\"] {\n  margin-left: 20px;\n  padding: 4px 8px;\n}\n.section {\n    width: 70%;\n    margin: 0 auto;\n    /*background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);*/\n    /*color: white;*/\n    position:relative;\n}\n.section h3 {\n    margin:0;\n    text-align: center;\n}\n.section p {\n    text-align: center;\n    margin: 5px 0;\n}\n.button {\n    width: 80px;\n    height:100%;\n    position: absolute;\n    top:0;\n    right:0;\n    background: url(\"/images/Delete.png\") no-repeat center center;\n    border-left: 1px solid rgba(171, 171, 171, 0.37);\n}\n.section .button:hover {\n    background-color: rgba(100, 10, 10, 0.5);\n}\n.section .description {\n    width: calc(100% - 110px);\n    height: 100%;\n    padding: 15px;\n}\n.section .description2 {\n    width: calc(100% - 30px);\n    height: 100%;\n    padding: 15px;\n}\n\n.section .description:hover, .section .description2:hover {\n    background-color: rgba(171, 171, 171, 0.6);\n}\nform[name=\"new-section\"] textarea {\n    width: 100%;\n}\n.item, .section {\n    width: 70%;\n    margin: 0 auto;\n    border-bottom: 1px solid rgba(171, 171, 171, 0.37);\n    background-color: rgba(171, 171, 171, 0.37);\n    color: black;\n    position:relative;\n}\n.item .button {\n    background: url(\"/images/DeleteSmall.png\") no-repeat center center;\n    border-left: 1px solid rgba(171, 171, 171, 0.37);\n}\n.item .button:hover {\n    background-color: rgba(100, 10, 10, 0.5);\n}\n.item h3 {\n  margin:0px;\n  padding:10px;\n  width: calc(100% - 100px);\n}\n.item h3.noAuth {\n    width: calc(100% - 20px);\n}\n.item h3:hover {\n background-color: rgba(171, 171, 171, 0.6);\n}\n\n\ninput[type=\"submit\"] {\n   margin-left: 5px;\n   background: #b5bdc8;\n   background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);\n   padding: 2px 4px;\n   color: #fff;\n   border: 1px solid #333;\n}\n\n.comment {\n    position: relative;\n    margin-top: 30px;\n    margin-right: 150px;\n    margin-left: 150px;\n}\n\n.comment-avatar {\n    position:absolute;\n    top: 0px;\n    left: -40px;\n    width: 70px;\n    height: 70px;\n    background: rgb(187,187,187) url(\"/images/avatar.png\") no-repeat 50% 50%;\n}\n\n.comment-author {\n    margin-bottom: 5px;\n    padding-left: 45px;\n    padding-right: 20px;\n    font-size: 16px;\n    font-weight: bold;\n}\n\n.comment-text {\n    padding: 12px;\n    padding-left: 45px;\n    background-color: #f8f8f8;\n    border-bottom: 5px solid #e5e6e6;\n}\n\n.comment-date {\n    margin-top: 5px;\n    font-size: 12px;\n    color: #bdc3c7;\n}\n\n.comment .button2 {\n    position: absolute;\n    top: 0;\n    right: -21px;\n    width: 30px;\n    height: 30px;\n    background: url(\"/images/deleteComment.png\") no-repeat 0 0;\n}\n\n.blackBackground {\n  position:absolute;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.5);\n  top: 0;\n  left: 0;\n  z-index:999;\n}\n\nform[name=\"new-comment\"], form[name=\"new-item\"],\nform[name=\"new-section\"] {\n    position: absolute;\n    z-index: 999;\n    top: 50%;\n    left: 50%;\n    margin-left: -250px;\n    transform: translateY(-50%);\n    padding: 20px;\n    width: 500px;\n    border-radius: 10px;\n    box-shadow: 0 0 10px #ccc;\n    color: white;\n    background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);\n\n}\nform[name=\"new-comment\"] textarea {\n  width: 98%;\n padding: 5px;\n margin-bottom: 10px;\n}\nform[name=\"new-comment\"] label, form[name=\"new-item\"] label,\nform[name=\"new-section\"] label {\ndisplay: block;\n margin-bottom: 10px;\n}\nform[name=\"new-section\"] input[type=\"text\"], form[name=\"new-item\"] input[type=\"text\"] {\n  width: 100%;\n  margin-bottom: 20px;\n}\nform[name=\"new-section\"] h2 {\n  text-align: center;\n}\nform[name=\"new-comment\"] input[name=\"username\"]{\n  width: 99%;\n}\n\nform[name=\"new-comment\"] input[type=\"submit\"], form[name=\"new-item\"] input[type=\"submit\"],\nform[name=\"new-section\"] input[type=\"submit\"] {\n  padding: 4px 8px;\n  margin: 0 auto 0 45%;\n}\n.hide {\n  display: none;\n}\n#editor {\n  margin-bottom: 10px;\n}\n#editor, .ql-toolbar {\n    background-color: white;\n    color: black;\n}\n", ""]);
+	exports.push([module.id, "#app {\n  margin: 10px;\n  box-shadow: 0 0 10px #ccc;\n  padding-bottom: 20px;\n  min-height: 720px;\n  min-width: 1170px;\n  font-family: 'PT Sans', sans-serif;\n  background-color: rgba(171, 171, 171, 0.37);\n\n}\n\n.header {\n  box-shadow: 0 0 10px #ccc;\n  background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);\n  color: white;\n\n}\n.header h1{\n  display: block;\n  float: left;\n  padding-left: 30px;\n}\n.header .auth{\n  float: right;\n  padding: 10px;\n  margin: 20px;\n}\n.header .exit{\n  float: right;\n  margin: 30px;\n}\n.clearfix:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n\n#content h2 {\n  text-align: center;\n}\n\n#content .control {\n  position: absolute;\n}\n\n#content .control input[type=\"submit\"] {\n  margin-left: 20px;\n  padding: 4px 8px;\n}\n.section {\n    width: 70%;\n    margin: 0 auto;\n    /*background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);*/\n    /*color: white;*/\n    position:relative;\n}\n.section h3 {\n    margin:0;\n    text-align: center;\n}\n.section p {\n    text-align: center;\n    margin: 5px 0;\n}\n.button {\n    width: 80px;\n    height:100%;\n    position: absolute;\n    top:0;\n    right:0;\n    background: url(\"/images/Delete.png\") no-repeat center center;\n    border-left: 1px solid rgba(171, 171, 171, 0.37);\n}\n.section .button:hover {\n    background-color: rgba(100, 10, 10, 0.5);\n}\n.section .description {\n    width: calc(100% - 110px);\n    height: 100%;\n    padding: 15px;\n}\n.section .description2 {\n    width: calc(100% - 30px);\n    height: 100%;\n    padding: 15px;\n}\n\n.section .description:hover, .section .description2:hover {\n    background-color: rgba(171, 171, 171, 0.6);\n}\nform[name=\"new-section\"] textarea {\n    width: 100%;\n}\n.item, .section {\n    width: 70%;\n    margin: 0 auto;\n    border-bottom: 1px solid rgba(171, 171, 171, 0.37);\n    background-color: rgba(171, 171, 171, 0.37);\n    color: black;\n    position:relative;\n}\n.item .button {\n    background: url(\"/images/DeleteSmall.png\") no-repeat center center;\n    border-left: 1px solid rgba(171, 171, 171, 0.37);\n}\n.item .button:hover {\n    background-color: rgba(100, 10, 10, 0.5);\n}\n.item h3 {\n  margin:0px;\n  padding:10px;\n  width: calc(100% - 100px);\n}\n.item h3.noAuth {\n    width: calc(100% - 20px);\n}\n.item h3:hover {\n background-color: rgba(171, 171, 171, 0.6);\n}\n\n\ninput[type=\"submit\"] {\n   margin-left: 5px;\n   background: #b5bdc8;\n   background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);\n   padding: 2px 4px;\n   color: #fff;\n   border: 1px solid #333;\n}\n\n.comment {\n    position: relative;\n    margin-top: 30px;\n    margin-right: 150px;\n    margin-left: 150px;\n}\n\n.comment-avatar {\n    position:absolute;\n    top: 0px;\n    left: -40px;\n    width: 70px;\n    height: 70px;\n    background: rgb(187,187,187) url(\"/images/avatar.png\") no-repeat 50% 50%;\n}\n\n.comment-author {\n    margin-bottom: 5px;\n    padding-left: 45px;\n    padding-right: 20px;\n    font-size: 16px;\n    font-weight: bold;\n}\n\n.comment-text {\n    padding: 12px;\n    padding-left: 45px;\n    background-color: #f8f8f8;\n    border-bottom: 5px solid #e5e6e6;\n}\n\n.comment-date {\n    margin-top: 5px;\n    font-size: 12px;\n    color: #bdc3c7;\n}\n\n.comment .button2 {\n    position: absolute;\n    top: 0;\n    right: -21px;\n    width: 30px;\n    height: 30px;\n    background: url(\"/images/deleteComment.png\") no-repeat 0 0;\n}\n\n.blackBackground {\n  position:absolute;\n  width: 100%;\n  height: 100%;\n  background: rgba(0, 0, 0, 0.5);\n  top: 0;\n  left: 0;\n  z-index:999;\n}\n\nform[name=\"new-comment\"], form[name=\"new-item\"],\nform[name=\"new-section\"] {\n    position: absolute;\n    z-index: 999;\n    top: 50%;\n    left: 50%;\n    margin-left: -250px;\n    transform: translateY(-50%);\n    padding: 20px;\n    width: 500px;\n    border-radius: 10px;\n    box-shadow: 0 0 10px #ccc;\n    color: white;\n    background: linear-gradient(to top, #b5bdc8 0%, #828c95 36%, #28343b 100%);\n\n}\nform[name=\"new-comment\"] textarea {\n  width: 98%;\n padding: 5px;\n margin-bottom: 10px;\n}\nform[name=\"new-comment\"] label, form[name=\"new-item\"] label,\nform[name=\"new-section\"] label {\ndisplay: block;\n margin-bottom: 10px;\n}\nform[name=\"new-section\"] input[type=\"text\"], form[name=\"new-item\"] input[type=\"text\"] {\n  width: 100%;\n  margin-bottom: 20px;\n}\nform[name=\"new-section\"] h2 {\n  text-align: center;\n}\nform[name=\"new-comment\"] input[name=\"username\"]{\n  width: 99%;\n}\n\nform[name=\"new-comment\"] input[type=\"submit\"], form[name=\"new-item\"] input[type=\"submit\"],\nform[name=\"new-section\"] input[type=\"submit\"] {\n  padding: 4px 8px;\n  margin: 0 auto 0 45%;\n}\n.hide {\n  display: none;\n}\n#editor {\n  margin-bottom: 10px;\n}\n#editor, .ql-toolbar {\n    background-color: white;\n    color: black;\n}\n.close {\n    position: absolute;\n    top: 5px;\n    right: 10px;\n}\n", ""]);
 	
 	// exports
 

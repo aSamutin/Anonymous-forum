@@ -12,6 +12,7 @@ module.exports = Backbone.View.extend({
         "click .section": "navigate",
         "click #addNewSection": "openForm",
         "click #addSection": "addSection",
+        "click .close": "closePopup"
     },
     tagName: "div",
     className: "sections-list",
@@ -55,6 +56,10 @@ module.exports = Backbone.View.extend({
         $(".blackBackground").toggleClass("hide");
         $("form[name='new-section']").toggleClass("hide");
         this.collection.add(section);
+    },
+    closePopup: function() {
+        $(".blackBackground").toggleClass("hide");
+        $("form[name='new-section']").toggleClass("hide");
     },
 
     destroy: function () {

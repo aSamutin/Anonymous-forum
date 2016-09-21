@@ -12,7 +12,8 @@ module.exports = Backbone.View.extend({
         "click .item": "navigate",
         "click #addNewItem": "openForm",
         "click #addItem": "addItem",
-        "click #back": "back"
+        "click #back": "back",
+        "click .close": "closePopup"
     },
     tagName: "div",
     className: "items-list",
@@ -64,7 +65,10 @@ module.exports = Backbone.View.extend({
     back: function() {
         Backbone.history.navigate("section", true);
     },
-
+    closePopup: function() {
+        $(".blackBackground").toggleClass("hide");
+        $("form[name='new-item']").toggleClass("hide");
+    },
     destroy: function () {
         _.invoke(this.views, "remove");
         this.remove();
