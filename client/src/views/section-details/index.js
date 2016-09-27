@@ -52,13 +52,13 @@ module.exports = Backbone.View.extend({
         Backbone.history.navigate(`item/${id}`, true);
     },
     openForm: function() {
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-item']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-item']").toggleClass("hide");
     },
     addItem: function() {
-        var item = new Item({sectionId: this.sectionId,title: $("input[name='titleItem']").val()});
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-item']").toggleClass("hide");
+        var item = new Item({sectionId: this.sectionId, title: this.$("input[name='titleItem']").val()});
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-item']").toggleClass("hide");
         this.collection.add(item);
         item.save();
     },
@@ -66,8 +66,8 @@ module.exports = Backbone.View.extend({
         Backbone.history.navigate("section", true);
     },
     closePopup: function() {
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-item']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-item']").toggleClass("hide");
     },
     destroy: function () {
         _.invoke(this.views, "remove");

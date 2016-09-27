@@ -1,7 +1,9 @@
 var Backbone = require("backbone/backbone");
 var template = require("./item.ejs");
+var Comments = require("../../collections/comment.collection");
 var config = require("../../app.config");
 var $ = require("jquery/dist/jquery");
+var _ = require("underscore");
 
 module.exports = Backbone.View.extend({
     views: [],
@@ -20,12 +22,23 @@ module.exports = Backbone.View.extend({
 
         return this;
     },
+
     deleteItem: function () {
-        this.model.url += "/"+this.model.get("id");
-        this.model.sync("delete", this.model);
-        this.model.destroy();
-        this.remove();
+        var that = this;
+        this.comments = new Comments();
+        this.comments.fetch().then(function(){
+            that.model.url += "/"+that.model.get("id");
+            _.each(that.comments.models, function(comment){
+                if(that.model.get("id") == comment.get("itemId")) {
+                    comment.url += "/"+comment.get("id");
+                    comment.sync("delete", comment);
+                }
+            });
+            that.model.destroy();
+        });
+        that.remove();
     },
+
     navigate: function () {
         var elem = $(event.currentTarget);
         var id = elem.data("id");

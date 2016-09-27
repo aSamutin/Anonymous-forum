@@ -44,22 +44,22 @@ module.exports = Backbone.View.extend({
         Backbone.history.navigate(`section/${id}`, true);
     },
     openForm: function() {
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-section']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-section']").toggleClass("hide");
     },
     addSection: function() {
         var section = new Section({
-            title: $("input[name='titleItem']").val(),
-            description: $("textarea").val()
+            title: this.$("input[name='titleItem']").val(),
+            description: this.$("textarea").val()
         });
         section.save();
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-section']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-section']").toggleClass("hide");
         this.collection.add(section);
     },
     closePopup: function() {
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-section']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-section']").toggleClass("hide");
     },
 
     destroy: function () {

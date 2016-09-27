@@ -1,0 +1,16 @@
+<div class="header clearfix">
+    <h1>Добро пожаловать на анонимный форум</h1>
+    <% if (config) {%>
+        <input type='submit' id="exit" class="exit" value='Выйти'>
+    <% } else {%>
+        <form action="javascript:void(0);" name="auth" class="auth">
+          <label>Логин
+              <input type="text" name="login" placeholder="Логин">
+          </label>
+          <label>Пароль
+              <input type="password" name="pass" placeholder="Пароль">
+          </label>
+          <input type="submit" id="entry" value="Войти">
+        </form>
+    <% } %>
+</div>

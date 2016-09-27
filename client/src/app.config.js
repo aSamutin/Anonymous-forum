@@ -1,3 +1,3 @@
 module.exports = {
-    auth: false
+    auth: true
 };

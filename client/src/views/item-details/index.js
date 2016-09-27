@@ -45,8 +45,8 @@ module.exports = Backbone.View.extend({
     },
 
     openForm: function() {
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-comment']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-comment']").toggleClass("hide");
         var quill = new Quill("#editor", {
             placeholder: "Введите текст сообщения...",
             theme: "snow"
@@ -56,11 +56,11 @@ module.exports = Backbone.View.extend({
     addComment: function() {
         var comment = new Comment({
             itemId: this.itemId,
-            username: $("input[name='username']").val(),
-            text: $(".ql-editor p").html()
+            username: this.$("input[name='username']").val(),
+            text: this.$(".ql-editor p").html()
         });
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-comment']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-comment']").toggleClass("hide");
         this.collection.add(comment);
         comment.save();
     },
@@ -68,8 +68,8 @@ module.exports = Backbone.View.extend({
         window.history.back();
     },
     closePopup: function() {
-        $(".blackBackground").toggleClass("hide");
-        $("form[name='new-comment']").toggleClass("hide");
+        this.$(".blackBackground").toggleClass("hide");
+        this.$("form[name='new-comment']").toggleClass("hide");
     },
     destroy: function () {
         _.invoke(this.views, "remove");

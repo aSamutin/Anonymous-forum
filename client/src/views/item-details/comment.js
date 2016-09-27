@@ -18,9 +18,9 @@ module.exports = Backbone.View.extend({
 
         return this;
     },
+    
     deleteComment: function () {
         this.model.url += "/"+this.model.get("id");
-        this.model.sync("delete", this.model);
         this.model.destroy();
         this.remove();
     }
