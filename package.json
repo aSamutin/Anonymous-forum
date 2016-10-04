@@ -6,6 +6,9 @@
     "postinstall": "webpack",
     "start": "slc run"
   },
+  "engines": {
+        "node": "6.4.x"
+  },
   "dependencies": {
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",

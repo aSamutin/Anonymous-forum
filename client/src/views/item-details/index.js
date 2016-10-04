@@ -24,24 +24,26 @@ module.exports = Backbone.View.extend({
         this.listenTo(this.collection, "sync", this.render);
         this.listenTo(this.collection, "add", this.render);
         this.itemId = item.itemId;
-        var items = new Items();
-        items.fetch();
-        this.items = items;
     },
 
     render: function () {
-        _.invoke(this.views, "destroy");
-        this.views = [];
-        this.$el.html(this.template({title: this.items.get(this.itemId).toJSON().title})+templPopup());
-        _.each(this.collection.models, function (model) {
-            if (model.get("itemId") == this.itemId) {
-                var modelView = new CommentView({
-                    model: model
-                });
-                this.views.push(modelView);
-                this.$el.append(modelView.render().$el);
-            }
-        }, this);
+        var that = this;
+        var items = new Items();
+        items.fetch().then(function(){
+            that.items = items;
+            _.invoke(that.views, "destroy");
+            that.views = [];
+            that.$el.html(that.template({title: that.items.get(that.itemId).toJSON().title})+templPopup());
+            _.each(that.collection.models, function (model) {
+                if (model.get("itemId") == that.itemId) {
+                    var modelView = new CommentView({
+                        model: model
+                    });
+                    that.views.push(modelView);
+                    that.$el.append(modelView.render().$el);
+                }
+            }, that);
+        });
     },
 
     openForm: function() {

@@ -25,25 +25,27 @@ module.exports = Backbone.View.extend({
         this.sectionId = section.sectionId;
         this.listenTo(this.collection, "sync", this.render);
         this.listenTo(this.collection, "add", this.render);
-        var sections = new Sections();
-        sections.fetch();
-        this.sections = sections;
     },
 
     render: function () {
-        _.invoke(this.views, "destroy");
-        this.views = [];
-        this.$el.html(this.template({title: this.sections.get(this.sectionId).toJSON().title}));
-        _.each(this.collection.models, function (model) {
-            if (model.get("sectionId") == this.sectionId) {
-                var modelView = new ItemView({
-                    model: model
-                });
-                this.views.push(modelView);
-                this.$el.append(modelView.render().$el);
-            }
-        }, this);
-        this.$el.append(templPopup());
+        var that = this;
+        var sections = new Sections();
+        sections.fetch().then(function(){
+            that.sections = sections;
+            _.invoke(that.views, "destroy");
+            that.views = [];
+            that.$el.html(that.template({title: that.sections.get(that.sectionId).toJSON().title}));
+            _.each(that.collection.models, function (model) {
+                if (model.get("sectionId") == that.sectionId) {
+                    var modelView = new ItemView({
+                        model: model
+                    });
+                    that.views.push(modelView);
+                    that.$el.append(modelView.render().$el);
+                }
+            }, that);
+            that.$el.append(templPopup());
+        });
     },
 
     navigate: function (event) {
